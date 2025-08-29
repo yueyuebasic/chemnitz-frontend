@@ -41,7 +41,7 @@ const UpdateProfile = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch('/api/auth/update', {
+      const response = await fetch('https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/auth/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

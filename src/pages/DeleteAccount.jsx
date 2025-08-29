@@ -20,7 +20,7 @@ const DeleteAccount = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/delete', {
+      const response = await fetch('https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/auth/delete', {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

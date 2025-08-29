@@ -94,14 +94,14 @@ const Sites = () => {
     useEffect(() => {
         const fetchPois = async () => {
         try {
-            let url = "/api/pois";
+            let url = "https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois";
             if (search) {
-                url = `/api/pois/search?keyword=${encodeURIComponent(search)}`;
+                url = `https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois/search?keyword=${encodeURIComponent(search)}`;
             } else if (category || type) {
                 const params = new URLSearchParams();
                 if (category) params.append("category", category);
                 if (type) params.append("type", type);
-                url = `/api/pois/filter?${params.toString()}`;
+                url = `https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois/filter?${params.toString()}`;
             }
             const res = await axios.get(url);
             setPois(res.data);
@@ -140,7 +140,7 @@ const Sites = () => {
             if (showFavoritesOnly) {
             
                 try {
-                    const res = await axios.get("/api/favorites", {
+                    const res = await axios.get("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites", {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                     });
                 const favs = res.data;
@@ -182,7 +182,7 @@ const Sites = () => {
             
             
                 try {
-                    let url = "/api/pois";
+                    let url = "https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois";
                     const params = new URLSearchParams();
                     params.append("page", page); 
                     params.append("limit", 20);  
@@ -190,7 +190,7 @@ const Sites = () => {
 
                     if (search) {
                         
-                        url = `/api/pois/search?keyword=${encodeURIComponent(search)}`;
+                        url = `https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois/search?keyword=${encodeURIComponent(search)}`;
                     } else {
                     
                         if (category) params.append("category", category);
@@ -203,9 +203,9 @@ const Sites = () => {
                         if (cuisine) params.append("cuisine", cuisine);
 
                         if ([...params].length > 0) {
-                            url = `/api/pois/filter?${params.toString()}`;
+                            url = `https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois/filter?${params.toString()}`;
                         } else {
-                            url = `/api/pois?${params.toString()}`;
+                            url = `https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois?${params.toString()}`;
                         }
                     }
 
@@ -361,7 +361,7 @@ const Sites = () => {
         setShowModal(false);
         if (!clickedLatLng) return;
 
-        const res = await fetch(`/api/pois/nearby?lat=${clickedLatLng.lat}&lng=${clickedLatLng.lng}&radius=800`);
+        const res = await fetch(`https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/pois/nearby?lat=${clickedLatLng.lat}&lng=${clickedLatLng.lng}&radius=800`);
         const data = await res.json();
         setNearbyPois(data);
     };

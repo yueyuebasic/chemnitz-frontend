@@ -15,7 +15,7 @@ const FavoriteButton = ({ itemId, itemType }) => {
             if (!token) return;
 
             try {
-                const response = await axios.get("/api/favorites", {
+                const response = await axios.get("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -43,13 +43,13 @@ const FavoriteButton = ({ itemId, itemType }) => {
         setLoading(true);
         try {
             if (isFavorite) {
-                await axios.post("/api/favorites/remove", 
+                await axios.post("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites/remove", 
                     { targetId: itemId, targetType: itemType },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
                 setIsFavorite(false);
             } else {
-                await axios.post("/api/favorites",
+                await axios.post("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites",
                     { targetId: itemId, targetType: itemType },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
