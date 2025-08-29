@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const DeleteAccount = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ const DeleteAccount = () => {
     }
 
     try {
-      const response = await fetch('https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/auth/delete', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/delete`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

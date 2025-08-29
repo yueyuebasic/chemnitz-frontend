@@ -3,11 +3,12 @@ import axios from "axios";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const FavoriteButton = ({ itemId, itemType }) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
-
 
     useEffect(() => {
         const fetchFavoriteStatus = async () => {
@@ -15,7 +16,8 @@ const FavoriteButton = ({ itemId, itemType }) => {
             if (!token) return;
 
             try {
-                const response = await axios.get("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites", {
+                
+                const response = await axios.get(`${API_BASE_URL}/api/favorites`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -43,13 +45,13 @@ const FavoriteButton = ({ itemId, itemType }) => {
         setLoading(true);
         try {
             if (isFavorite) {
-                await axios.post("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites/remove", 
+                await axios.post(`${API_BASE_URL}/api/favorites/remove`, 
                     { targetId: itemId, targetType: itemType },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
                 setIsFavorite(false);
             } else {
-                await axios.post("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/favorites",
+                await axios.post(`${API_BASE_URL}/api/favorites`,
                     { targetId: itemId, targetType: itemType },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );

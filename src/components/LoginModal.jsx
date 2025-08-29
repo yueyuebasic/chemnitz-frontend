@@ -3,6 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const LoginModal = ({ onClose }) => {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
@@ -14,7 +16,7 @@ const LoginModal = ({ onClose }) => {
         setError("");
 
         try {
-        const res = await fetch("https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/auth/login", {
+        const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",

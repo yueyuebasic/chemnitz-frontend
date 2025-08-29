@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const UpdateProfile = () => {
   const [userData, setUserData] = useState({ username: '', email: '', password: '********' });
   const [editField, setEditField] = useState(null);
@@ -41,7 +43,7 @@ const UpdateProfile = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch('https://chemnitz-backend-cfergkhzc2a5aacr.francecentral-01.azurewebsites.net/api/auth/update', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
